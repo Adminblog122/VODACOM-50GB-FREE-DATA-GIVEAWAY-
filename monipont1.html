@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Click-to-Earn — Playful Naira Rewards</title>
+<meta name="description" content="Play Click-to-Earn: beat the high score to earn Naira. Share to unlock withdraw!" />
+<style>
+  :root{
+    --bg1:#fff6fb;
+    --bg2:#fffbe8;
+    --accent:#ff6b6b;
+    --accent2:#ffd93d;
+    --card:#ffffffee;
+    --muted:#6b6b6b;
+    --glass: rgba(255,255,255,0.65);
+    --success:#28c76f;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: radial-gradient(circle at 10% 20%, var(--bg1) 0%, transparent 30%),
+                radial-gradient(circle at 90% 80%, var(--bg2) 0%, transparent 30%),
+                linear-gradient(120deg,#a1c4fd 0%, #c2e9fb 50%, #f6d365 100%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:18px;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .container{
+    width:100%;
+    max-width:980px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.9));
+    border-radius:18px;
+    box-shadow: 0 18px 40px rgba(12,34,60,0.12);
+    padding:22px;
+    display:flex;
+    gap:18px;
+    align-items:stretch;
+  }
+
+  @media (max-width:900px){ .container{flex-direction:column;padding:16px} }
+
+  /* Left - main */
+  .main {
+    flex:1;
+    padding:18px;
+    border-radius:14px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.92));
+    box-shadow: inset 0 -6px 18px rgba(0,0,0,0.02);
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .title { text-align:center; margin-bottom:8px; }
+  .title h1{ font-size:26px; margin:6px 0; color:#222; }
+  .title p{ margin:0;color:var(--muted); font-size:14px }
+
+  /* centered big button */
+  .center-wrap { display:flex; align-items:center; justify-content:center; width:100%; padding:18px 0; }
+  .big-btn {
+    width:260px;
+    height:260px;
+    border-radius:50%;
+    background: radial-gradient(circle at 30% 30%, #fff 0%, #ffeceb 40%, #ffdede 70%, var(--accent) 100%);
+    display:flex; align-items:center; justify-content:center;
+    font-size:30px; color:#241a1a; font-weight:900;
+    cursor:pointer; user-select:none;
+    box-shadow: 0 22px 40px rgba(255,107,107,0.22), inset 0 -12px 34px rgba(0,0,0,0.06);
+    transition: transform 160ms ease, box-shadow 160ms ease;
+  }
+
+  .big-btn:active{ transform: scale(.98) }
+  /* dance */
+  .big-btn.dance { animation: dance 700ms ease-in-out infinite; }
+  @keyframes dance {
+    0% { transform: translateY(0) rotate(0deg) scale(1); }
+    25% { transform: translateY(-8px) rotate(-5deg) scale(1.03); }
+    50% { transform: translateY(0) rotate(4deg) scale(1); }
+    75% { transform: translateY(-6px) rotate(-3deg) scale(1.02); }
+    100% { transform: translateY(0) rotate(0deg) scale(1); }
+  }
+
+  /* stats */
+  .stats { display:flex; gap:12px; margin-top:14px; flex-wrap:wrap; justify-content:center; }
+  .card { background:var(--card); padding:10px 14px; border-radius:10px; min-width:120px; text-align:center; box-shadow:0 8px 18px rgba(16,32,64,0.05); }
+  .card .big { font-size:20px; font-weight:800; color:#222 }
+  .card .label { font-size:12px; color:var(--muted); margin-top:6px }
+
+  /* right - controls */
+  .side {
+    width:320px;
+    padding:14px;
+    border-radius:12px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.95));
+    box-shadow: 0 8px 20px rgba(18,38,63,0.06);
+    display:flex; flex-direction:column;
+  }
+  @media (max-width:900px){ .side{ width:100%; order:3 } }
+
+  .controls .row { display:flex; align-items:center; gap:8px; margin-bottom:10px; }
+  label { flex:1; font-size:14px; color:#333; }
+  select, input[type=number] { padding:9px; border-radius:8px; border:1px solid #eee; font-size:14px; min-width:80px; }
+
+  .btn { padding:10px 12px; border-radius:10px; border:none; font-weight:700; cursor:pointer; }
+  .btn.primary { background: linear-gradient(180deg,var(--accent), #ff3b3b); color:white; box-shadow:0 8px 18px rgba(255,107,107,0.18); }
+  .btn.ghost { background:transparent; border:1px solid #eee; color:#333; }
+
+  .share-btn { background:#25D366; color:white; border:none; padding:10px; border-radius:10px; font-weight:700; cursor:pointer; width:100%; display:flex; gap:8px; align-items:center; justify-content:center; }
+
+  .share-progress { margin-top:8px; font-size:13px; color:var(--muted); text-align:center; }
+
+  .withdraw {
+    margin-top:12px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+  }
+
+  .withdraw .locked {
+    opacity:0.6;
+    transform:scale(.98);
+    transition: all 300ms ease;
+  }
+
+  .withdraw .unlocked {
+    animation: popIn 700ms cubic-bezier(.2,.9,.3,1);
+    box-shadow: 0 18px 36px rgba(40,199,111,0.18);
+  }
+
+  @keyframes popIn {
+    0% { transform: translateY(20px) scale(.9); opacity:0; }
+    60% { transform: translateY(-8px) scale(1.03); opacity:1; }
+    100% { transform: translateY(0) scale(1); }
+  }
+
+  /* modal */
+  .modal-backdrop{ position:fixed; inset:0; background: rgba(0,0,0,0.45); display:none; align-items:center; justify-content:center; z-index:50; }
+  .modal{ background:white; padding:18px; border-radius:12px; width:90%; max-width:420px; box-shadow:0 18px 40px rgba(0,0,0,0.25); }
+  .modal h3{ margin:0 0 8px; }
+  .modal .row{ margin-bottom:10px; }
+
+  /* confetti canvas */
+  #confetti{ position:absolute; inset:0; pointer-events:none; z-index:5; }
+
+  .note { font-size:12px; color:var(--muted); margin-top:10px; text-align:center; }
+
+</style>
+</head>
+<body>
+  <div class="container" role="main" aria-label="Click-to-Earn Game">
+    <div class="main" id="mainArea">
+      <canvas id="confetti"></canvas>
+
+      <div class="title">
+        <h1>Click-to-Earn 🎉</h1>
+        <p>Beat the high score to earn Naira. Share to unlock Withdraw!</p>
+      </div>
+
+      <div class="center-wrap">
+        <div id="bigBtn" class="big-btn" role="button" tabindex="0">🎯 TAP FAST🎯 </div>
+      </div>
+
+      <div class="stats" aria-live="polite">
+        <div class="card">
+          <div class="big" id="score">0</div>
+          <div class="label">Score</div>
+        </div>
+        <div class="card">
+          <div class="big" id="time">10s</div>
+          <div class="label">Time Left</div>
+        </div>
+        <div class="card">
+          <div class="big" id="high">0</div>
+          <div class="label">High Score</div>
+        </div>
+        <div class="card">
+          <div class="big" id="wallet">₦0</div>
+          <div class="label">Wallet Balance</div>
+        </div>
+      </div>
+
+      <div class="note" id="tip">Tip: Press Start or tap the big button if Auto-start is ON.</div>
+    </div>
+
+    <aside class="side" aria-label="Controls">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <strong>Game Controls</strong>
+        <small style="color:var(--muted)">Playful • Naira</small>
+      </div>
+
+      <div class="controls" style="margin-top:8px">
+        <div class="row">
+          <label for="duration">Duration</label>
+          <select id="duration"><option value="5">5s</option><option value="10" selected>10s</option><option value="15">15s</option><option value="30">30s</option></select>
+        </div>
+
+        <div class="row">
+          <label for="autostart">Auto-start</label>
+          <select id="autostart"><option value="yes">Yes</option><option value="no" selected>No</option></select>
+        </div>
+
+        <div class="row">
+          <label>Sound</label>
+          <button id="mute" class="btn ghost">Mute</button>
+        </div>
+        
+        <audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+        <div style="display:flex;gap:8px;margin-top:6px">
+          <button id="start" class="btn primary">Start</button>
+          <button id="reset" class="btn ghost">Reset Highscore</button>
+        </div>
+
+        <hr style="margin:12px 0;border:none;border-top:1px solid #eee" />
+
+        <div>
+          <strong style="display:block;margin-bottom:8px">Share & Unlock Withdraw</strong>
+          <button id="shareBtn" class="share-btn">Share on WhatsApp (<span id="shareCount">0</span>/6)</button>
+          <div class="share-progress" id="shareText">Share the game link to 6 people to unlock Withdraw.</div>
+        </div>
+
+        <div class="withdraw" id="withdrawArea">
+          <div id="lockedNote" class="locked">
+            <div style="font-size:13px;color:var(--muted)">Withdraw is locked — reach top and share 6 times.</div>
+          </div>
+          <div id="withdrawBtnWrap"></div>
+        </div>
+
+        <div style="margin-top:12px">
+          <strong>How earnings work</strong>
+          <ul style="color:var(--muted);padding-left:16px">
+            <li>1–20 clicks → ₦100</li>
+            <li>21–50 clicks → ₦500</li>
+            <li>51–100 clicks → ₦1,000</li>
+            <li>101+ clicks → ₦2,000</li>
+          </ul>
+        </div>
+
+        <div style="margin-top:8px" class="note">
+          NOTE: This demo simulates earnings locally. To process real payouts, connect a secure backend & payment provider.
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal-backdrop" role="dialog" aria-modal="true">
+    <div class="modal" role="document">
+      <h3 id="modalTitle">Withdraw Request</h3>
+      <div id="modalBody">
+        <div class="row">
+          <label>Amount</label>
+          <div id="modalAmount" style="font-weight:800">₦0</div>
+        </div>
+        <div class="row">
+          <label for="phone">Phone (for payment)</label>
+          <input id="phone" type="text" placeholder="+2348012345678" style="width:100%;padding:10px;border-radius:8px;border:1px solid #eee" />
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:10px">
+        <button id="modalCancel" class="btn ghost">Cancel</button>
+        <button id="modalSubmit" class="btn primary">Request Withdraw</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+(() => {
+  // Elements
+  const bigBtn = document.getElementById('bigBtn');
+  const scoreEl = document.getElementById('score');
+  const timeEl = document.getElementById('time');
+  const highEl = document.getElementById('high');
+  const startBtn = document.getElementById('start');
+  const resetBtn = document.getElementById('reset');
+  const durationSel = document.getElementById('duration');
+  const autostartSel = document.getElementById('autostart');
+  const muteBtn = document.getElementById('mute');
+  const shareBtn = document.getElementById('shareBtn');
+  const shareCountEl = document.getElementById('shareCount');
+  const shareText = document.getElementById('shareText');
+  const walletEl = document.getElementById('wallet');
+  const withdrawArea = document.getElementById('withdrawArea');
+  const withdrawBtnWrap = document.getElementById('withdrawBtnWrap');
+  const lockedNote = document.getElementById('lockedNote');
+
+  // Modal elements
+  const modal = document.getElementById('modal');
+  const modalAmount = document.getElementById('modalAmount');
+  const modalCancel = document.getElementById('modalCancel');
+  const modalSubmit = document.getElementById('modalSubmit');
+  const phoneInput = document.getElementById('phone');
+  const modalTitle = document.getElementById('modalTitle');
+
+  // confetti
+  const confettiCanvas = document.getElementById('confetti');
+  const confettiCtx = confettiCanvas.getContext('2d');
+  function fitCanvas(){ confettiCanvas.width = confettiCanvas.offsetWidth; confettiCanvas.height = confettiCanvas.offsetHeight; }
+  window.addEventListener('resize', fitCanvas);
+  fitCanvas();
+
+  // Game state
+  let duration = parseInt(durationSel.value,10);
+  let timeLeft = duration;
+  let score = 0;
+  let running = false;
+  let timerId = null;
+  let highScore = parseInt(localStorage.getItem('ctw_high')||'0',10);
+  let wallet = parseInt(localStorage.getItem('ctw_wallet')||'0',10);
+  let shareCount = parseInt(localStorage.getItem('ctw_shares')||'0',10);
+  let soundOn = true;
+
+  // UI init
+  highEl.innerText = highScore;
+  walletEl.innerText = `₦${wallet}`;
+  shareCountEl.innerText = shareCount;
+
+  // Audio (simple)
+  const audioCtx = new (window.AudioContext||window.webkitAudioContext)();
+  function clickTone(){
+    if (!soundOn) return;
+    const o = audioCtx.createOscillator(); const g = audioCtx.createGain();
+    o.type='sine'; o.frequency.value = 900 + Math.random()*200;
+    g.gain.value = 0.07;
+    o.connect(g); g.connect(audioCtx.destination);
+    o.start(); o.frequency.exponentialRampToValueAtTime(600, audioCtx.currentTime + 0.08);
+    g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.12);
+    o.stop(audioCtx.currentTime + 0.14);
+  }
+  function winTone(){
+    if (!soundOn) return;
+    const now = audioCtx.currentTime;
+    const g = audioCtx.createGain(); g.connect(audioCtx.destination); g.gain.value = 0.06;
+    const o1 = audioCtx.createOscillator(); o1.type='sine'; o1.frequency.value=440; o1.connect(g); o1.start(now);
+    const o2 = audioCtx.createOscillator(); o2.type='triangle'; o2.frequency.value=660; o2.connect(g); o2.start(now);
+    o1.frequency.exponentialRampToValueAtTime(800, now+0.25);
+    o2.frequency.exponentialRampToValueAtTime(1100, now+0.25);
+    g.gain.exponentialRampToValueAtTime(0.001, now+0.6);
+    o1.stop(now+0.6); o2.stop(now+0.6);
+  }
+
+  // score -> earnings logic (Naira)
+  function earningsForScore(s){
+    if (s <= 20) return 100;
+    if (s <= 50) return 500;
+    if (s <= 100) return 1000;
+    return 2000;
+  }
+
+  function updateUI(){
+    scoreEl.innerText = score;
+    timeEl.innerText = `${Math.ceil(timeLeft)}s`;
+    highEl.innerText = highScore;
+    walletEl.innerText = `₦${wallet}`;
+    shareCountEl.innerText = shareCount;
+    // withdraw button render
+    renderWithdraw();
+  }
+
+  // big button interactions
+  bigBtn.addEventListener('pointerdown', (e)=>{ e.preventDefault(); handleClick(); });
+  bigBtn.addEventListener('keydown', (e) => { if (e.code==='Space' || e.code==='Enter'){ e.preventDefault(); handleClick(); } });
+
+  function handleClick(){
+    if (!running){
+      if (autostartSel.value === 'yes'){ startGame(); }
+      else return;
+    }
+    score++;
+    scoreEl.innerText = score;
+    animateBtn();
+    clickTone();
+  }
+
+  function animateBtn(){
+    bigBtn.classList.remove('dance');
+    void bigBtn.offsetWidth;
+    bigBtn.classList.add('dance');
+    setTimeout(()=> bigBtn.classList.remove('dance'), 1000);
+  }
+
+  // start / end game
+  startBtn.addEventListener('click', startGame);
+  durationSel.addEventListener('change', ()=> { duration = parseInt(durationSel.value,10); timeLeft = duration; timeEl.innerText = `${timeLeft}s`; });
+
+  function startGame(){
+    if (running) return;
+    // resume audio context (user gesture)
+    if (audioCtx.state === 'suspended') audioCtx.resume().catch(()=>{});
+    duration = parseInt(durationSel.value,10);
+    timeLeft = duration;
+    score = 0;
+    running = true;
+    startBtn.disabled = true;
+    startBtn.innerText = 'In Progress...';
+    updateUI();
+    timerId = setInterval(()=> {
+      timeLeft -= 0.1;
+      if (timeLeft <= 0) timeLeft = 0;
+      timeEl.innerText = `${Math.ceil(timeLeft)}s`;
+      if (timeLeft <= 0.01){ endGame(); }
+    }, 100);
+  }
+
+  function endGame(){
+    if (!running) return;
+    running = false;
+    clearInterval(timerId);
+    startBtn.disabled = false;
+    startBtn.innerText = 'Start';
+    // evaluate high score & earnings
+    const prevHigh = highScore;
+    if (score > highScore){
+      highScore = score;
+      localStorage.setItem('ctw_high', highScore);
+      // award earnings based on score tiers
+      const earn = earningsForScore(score);
+      wallet += earn;
+      localStorage.setItem('ctw_wallet', wallet);
+      // celebrate
+      winTone();
+      popConfetti();
+      showCongrats(earn);
+    } else {
+      // small pop for no new high
+      clickTone();
+    }
+    updateUI();
+  }
+
+  // Reset highscore
+  resetBtn.addEventListener('click', ()=> {
+    if (!confirm('Reset saved high score?')) return;
+    highScore = 0; localStorage.setItem('ctw_high','0'); highEl.innerText = '0';
+  });
+
+  // Mute toggle
+  muteBtn.addEventListener('click', ()=> { soundOn = !soundOn; muteBtn.innerText = soundOn ? 'Mute' : 'Unmute'; });
+
+  // Share logic (WhatsApp)
+  shareBtn.addEventListener('click', () => {
+    const text = encodeURIComponent(`I just played Click-to-Earn! Try to beat my score. Play here: ${location.href}`);
+    const wa = `https://wa.me/?text=${text}`;
+    // open new window/tab
+    window.open(wa,'_blank');
+    // We'll assume share attempt counts (front-end). Increment and persist.
+    shareCount++;
+    if (shareCount > 200) shareCount = 200; // safety cap
+    localStorage.setItem('ctw_shares', shareCount);
+    shareCountEl.innerText = shareCount;
+    if (shareCount >= 6){
+      shareText.innerText = 'Great! You have shared enough times — Withdraw is unlocked!';
+    } else {
+      shareText.innerText = `Shared ${shareCount}/6. Share ${6-shareCount} more to unlock Withdraw.`;
+    }
+    renderWithdraw();
+  });
+
+  // Withdraw rendering
+  function renderWithdraw(){
+    withdrawBtnWrap.innerHTML = '';
+    if (wallet <= 0){
+      lockedNote.innerHTML = `<div style="font-size:13px;color:var(--muted)">You have no wallet balance to withdraw.</div>`;
+      return;
+    }
+    if (shareCount < 6){
+      // show locked state
+      lockedNote.innerHTML = `<div style="font-size:13px;color:var(--muted)">Withdraw locked. Share ${6-shareCount} more times to unlock.</div>`;
+      return;
+    }
+    // unlocked - show animated withdraw button
+    lockedNote.innerHTML = '';
+    const btn = document.createElement('button');
+    btn.className = 'btn primary unlocked';
+    btn.innerText = 'Withdraw Now';
+    btn.addEventListener('click', ()=> openWithdrawModal());
+    withdrawBtnWrap.appendChild(btn);
+  }
+  renderWithdraw();
+
+  // Modal logic (simulate withdraw request)
+  function openWithdrawModal(){
+    modalAmount.innerText = `₦${wallet}`;
+    modal.style.display = 'flex';
+    phoneInput.value = '';
+  }
+  modalCancel.addEventListener('click', ()=> { modal.style.display = 'none'; });
+  modal.addEventListener('click', (e)=> { if (e.target === modal) modal.style.display='none'; });
+
+  modalSubmit.addEventListener('click', ()=> {
+    const phone = phoneInput.value.trim();
+    if (!phone || phone.length < 8){ alert('Please enter a valid phone number for payment'); return; }
+    // simulate request
+    modalSubmit.disabled = true; modalSubmit.innerText = 'Requesting...';
+    setTimeout(()=> {
+      // success simulation
+      const amount = wallet;
+      wallet = 0;
+      localStorage.setItem('ctw_wallet','0');
+      modalSubmit.disabled = false; modalSubmit.innerText = 'Request Withdraw';
+      modal.style.display = 'none';
+      alert(`Withdraw request for ₦${amount} submitted!\nOur team will process payment to ${phone} (simulation).`);
+      // optional: reset shares so user must share again next time
+      shareCount = 0; localStorage.setItem('ctw_shares','0');
+      shareCountEl.innerText = shareCount;
+      shareText.innerText = 'Share the game link to 6 people to unlock Withdraw.';
+      updateUI();
+    }, 1400);
+  });
+
+    // Congratulation modal / toast (simple)
+  function showCongrats(amount){
+    // quick toast-like in-page message
+    const t = document.createElement('div');
+    t.style.position = 'fixed';
+    t.style.left = '50%';
+    t.style.top = '12%';
+    t.style.transform = 'translateX(-50%)';
+    t.style.background = 'linear-gradient(90deg,#fff,#fffef6)';
+    t.style.padding = '12px 16px';
+    t.style.borderRadius = '12px';
+    t.style.boxShadow = '0 12px 30px rgba(10,30,60,0.12)';
+    t.style.zIndex = 9999;
+    t.innerHTML = `<strong style="display:block">🎉 New High Score!</strong><div style="font-size:14px;margin-top:6px">You earned ₦${amount} — your wallet was credited.</div>`;
+    document.body.appendChild(t);
+    setTimeout(()=> t.style.opacity = '0', 2200);
+    setTimeout(()=> t.remove(), 2600);
+  }
+
+  // Simple confetti
+  let particles = [];
+  function popConfetti(){
+    const w = confettiCanvas.width, h = confettiCanvas.height;
+    for (let i=0;i<80;i++){
+      particles.push({
+        x: w/2 + (Math.random()-0.5)*160,
+        y: h/3 + (Math.random()-0.5)*80,
+        vx: (Math.random()-0.5)*10,
+        vy: (Math.random()*-8)-2,
+        size: 6 + Math.random()*10,
+        color: ['#ff6b6b','#ffd93d','#6be4ff','#9bff6b','#ff9bd6'][Math.floor(Math.random()*5)],
+        life: 80 + Math.random()*60,
+        rot: Math.random()*360
+      });
+    }
+    runConfetti();
+  }
+  let confRunning = false;
+  function runConfetti(){
+    if (confRunning) return;
+    confRunning = true;
+    function frame(){
+      confettiCtx.clearRect(0,0,confettiCanvas.width, confettiCanvas.height);
+      for (let i=particles.length-1;i>=0;i--){
+        const p = particles[i];
+        p.vy += 0.3;
+        p.x += p.vx; p.y += p.vy; p.rot += p.vx*0.5; p.life--;
+        confettiCtx.save();
+        confettiCtx.translate(p.x,p.y);
+        confettiCtx.rotate(p.rot*Math.PI/180);
+        confettiCtx.fillStyle = p.color;
+        confettiCtx.fillRect(-p.size/2, -p.size/2, p.size, p.size*0.6);
+        confettiCtx.restore();
+        if (p.life<=0 || p.y > confettiCanvas.height + 40) particles.splice(i,1);
+      }
+      if (particles.length>0) requestAnimationFrame(frame); else confRunning = false;
+    }
+    frame();
+  }
+
+  // load initial state
+  updateUI();
+
+  // keyboard shortcuts
+  document.addEventListener('keydown', (e)=> {
+    if (e.key.toLowerCase() === 's') startGame();
+    if (e.key.toLowerCase() === 'r') {
+      if (confirm('Reset saved high score?')) { localStorage.setItem('ctw_high','0'); highScore = 0; updateUI(); }
+    }
+  });
+
+  // ensure audio context resumed on first user gesture
+  document.addEventListener('pointerdown', ()=> { if (audioCtx.state === 'suspended') audioCtx.resume().catch(()=>{}); }, { once:true });
+
+})();
+</script>
+<script>
+const bgMusic = document.getElementById("bgMusic");
+if (bgMusic.paused) {
+  bgMusic.play();
+}
+</script>
+</body>
+</html>
